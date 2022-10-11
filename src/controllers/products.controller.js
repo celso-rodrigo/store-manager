@@ -12,7 +12,14 @@ const listById = async (req, res) => {
   res.status(200).json(productById);
 };
 
+const saveProduct = async (req, res) => {
+  const { name } = req.body;
+  const savedProduct = await productsService.saveProduct(name);
+  res.status(201).json({ id: savedProduct.insertId, name });
+};
+
 module.exports = {
   listAll,
   listById,
+  saveProduct,
 };
