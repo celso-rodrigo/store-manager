@@ -30,17 +30,12 @@
     "containerId": "",
     "name": "http://localhost:3000/products",
     "url": "http://localhost:3000/products",
-    "method": "POST",
+    "method": "GET",
     "sortNum": 0,
     "created": "2022-10-11T22:13:18.071Z",
-    "modified": "2022-10-11T23:20:47.691Z",
+    "modified": "2022-10-11T23:44:48.065Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"card game\"\n}",
-      "form": []
-    },
     "tests": []
   }
 ]
