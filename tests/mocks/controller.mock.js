@@ -13,6 +13,9 @@ const allProductsMock = [
   },
 ];
 
+const saveProductMock = [{ insertId: 10, affectedRows: 1}, null];
+
 module.exports = {
   allProductsMock,
-}
+  saveProductMock,
+};

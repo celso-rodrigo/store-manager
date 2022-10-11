@@ -4,7 +4,10 @@ const connection = require('../../../src/models/connection');
 
 const productsModel = require('../../../src/models/products.model');
 
-const { allProductsMock } = require('../../mocks/controller.mock');
+const {
+  allProductsMock,
+  saveProductMock,
+} = require('../../mocks/controller.mock');
 
 describe('Unit tests of products model', function () {
   afterEach(sinon.restore);
@@ -23,5 +26,13 @@ describe('Unit tests of products model', function () {
     const result = await productsModel.getProductById();
 
     expect(result).to.equal(allProductsMock[0]);
+  });
+
+  it('Should return an object with the number of afcted rows', async function () {
+    sinon.stub(connection, 'execute').resolves(saveProductMock);
+
+    const result = await productsModel.saveProduct();
+
+    expect(result.affectedRows).to.equal(1);
   });
 });

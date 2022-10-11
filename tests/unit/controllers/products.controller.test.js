@@ -57,4 +57,23 @@ describe('Unit tests of products controller', function () {
     expect(res.status).to.have.been.calledWith(404);
     expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
   });
+
+  it('Should return a JSON with the product ID and name and the status 201', async function () {
+      const name = 'Card game';
+      const req = { body: { name } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productService, 'saveProduct').resolves({ insertId: 10 });
+
+      await productsController.saveProduct(req, res);
+
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith({
+        id: 10,
+        name,
+      });
+    });
 });

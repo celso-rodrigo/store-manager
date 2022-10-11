@@ -33,12 +33,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-11T22:13:18.071Z",
-    "modified": "2022-10-11T22:40:33.377Z",
+    "modified": "2022-10-11T23:20:47.691Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": 1\n}",
+      "raw": "{\n  \"name\": \"card game\"\n}",
       "form": []
     },
     "tests": []
