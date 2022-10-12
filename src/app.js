@@ -11,6 +11,7 @@ app.get('/', (_request, response) => {
 });
 
 app.use('/products', routers.productsRoutes);
+app.use('/sales', routers.salesRoutes);
 
 app.use((err, _req, res, _next) => {
   res
