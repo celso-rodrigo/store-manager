@@ -26,9 +26,17 @@ const updateProduct = async (req, res) => {
   res.status(200).json({ id, name });
 };
 
+const deleteProduct = async (req, res) => {
+  const id = Number(req.params.id);
+  const affectedRows = await productsService.deleteProduct(id);
+  if (affectedRows !== 1) return res.status(404).json({ message: 'Product not found' });
+  res.status(204).end();
+};
+
 module.exports = {
   listAll,
   listById,
   saveProduct,
   updateProduct,
+  deleteProduct,
 };

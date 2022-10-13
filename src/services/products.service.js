@@ -20,9 +20,15 @@ const updateProduct = async (productName, id) => {
   return affectedRows;
 };
 
+const deleteProduct = async (id) => {
+  const affectedRows = await productsModel.deleteProduct(id);
+  return affectedRows;
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   saveProduct,
   updateProduct,
+  deleteProduct,
 };
