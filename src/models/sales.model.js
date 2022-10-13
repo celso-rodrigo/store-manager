@@ -15,9 +15,25 @@ const saveSaleItem = async (saleId, productId, quantity) => {
 
 const getSales = async () => {
   const [result] = await connection.execute(
-    'SELECT * FROM StoreManager.sales_products',
+    'SELECT * FROM StoreManager.sales_products ORDER BY sale_id, product_id',
   );
   return result;
+};
+
+const getSalesById = async (id) => {
+  const [result] = await connection.execute(
+    'SELECT * FROM StoreManager.sales_products WHERE sale_id = ? ORDER BY sale_id, product_id',
+    [id],
+  );
+  return result;
+};
+
+const getSaleDate = async (id) => {
+  const [result] = await connection.execute(
+    'SELECT date FROM StoreManager.sales WHERE id = ?',
+    [id],
+  );
+  return result[0].date;
 };
 
 const checkIfIdExists = async (id) => {
@@ -39,6 +55,8 @@ module.exports = {
   saveSale,
   saveSaleItem,
   getSales,
+  getSalesById,
+  getSaleDate,
   checkIfIdExists,
   getSaleId,
 };

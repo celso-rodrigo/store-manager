@@ -1,3 +1,4 @@
+const camelize = require('camelize');
 const salesModel = require('../models/sales.model');
 
 const validateProductId = async (sales) => {
@@ -16,11 +17,27 @@ const saveSales = async (saleItems) => {
 
 const getSales = async () => {
   const sales = await salesModel.getSales();
-  return sales;
+  const salesObj = await Promise.all(sales.map(async (sale) => {
+    const date = await salesModel.getSaleDate(sale.sale_id);
+    return { date, ...sale };
+  }));
+  return camelize(salesObj);
+};
+
+const getSalesById = async (id) => {
+  const sales = camelize(await salesModel.getSalesById(id));
+  if (!sales.length) return sales;
+  const date = await salesModel.getSaleDate(id);
+  const salesObj = sales.map((sale) => {
+    const { quantity, productId } = sale;
+    return { date, productId, quantity };
+  });
+  return camelize(salesObj);
 };
 
 module.exports = {
   saveSales,
   getSales,
   validateProductId,
+  getSalesById,
 };
