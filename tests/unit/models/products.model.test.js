@@ -35,4 +35,20 @@ describe('Unit tests of products model', function () {
 
     expect(result.affectedRows).to.equal(1);
   });
+
+  it('Should return the number of afcted rows', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+
+    const result = await productsModel.updateProduct();
+
+    expect(result).to.equal(1);
+  });
+
+  it('Should return the number of afcted rows', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+
+    const result = await productsModel.deleteProduct();
+
+    expect(result).to.equal(1);
+  });
 });
