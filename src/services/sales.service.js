@@ -4,7 +4,7 @@ const salesModel = require('../models/sales.model');
 const validateProductId = async (sales) => {
   const idSearch = await Promise.all(await sales.map((sale) => 
     salesModel.checkIfIdExists(sale.productId)));
-  return idSearch.every((test2) => test2.length > 0);
+  return idSearch.every((id) => id.length > 0);
 };
 
 const saveSales = async (saleItems) => {
