@@ -18,8 +18,17 @@ const saveProduct = async (req, res) => {
   res.status(201).json({ id: savedProduct.insertId, name });
 };
 
+const updateProduct = async (req, res) => {
+  const { name } = req.body;
+  const { id } = req.params;
+  const affectedRows = await productsService.updateProduct(name, id);
+  if (affectedRows !== 1) return res.status(404).json({ message: 'Product not found' });
+  res.status(200).json({ id, name });
+};
+
 module.exports = {
   listAll,
   listById,
   saveProduct,
+  updateProduct,
 };
