@@ -34,7 +34,7 @@ describe('Unit tests of products controller', function () {
 
   describe('Tests of GET "/products/:id"', function () {
     it('Should return a JSON with the right product and status 200', async function () {
-      const req = {params : { id: 1 }};
+      const req = {params : { id: 1 }, query: { q: undefined }};
       const res = {};
   
       res.status = sinon.stub().returns(res);
@@ -49,7 +49,7 @@ describe('Unit tests of products controller', function () {
     });
   
     it('Should return a JSON with a message and status 404', async function () {
-      const req = { params: { id: 999 } };
+      const req = {params : { id: 999 }, query: { q: undefined }};
       const res = {};
   
       res.status = sinon.stub().returns(res);
