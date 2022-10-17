@@ -8,6 +8,7 @@ const salesValidation = require('../middlewares/validateSalesInputs');
 
 router.get('/', salesController.getSales);
 router.get('/:id', salesController.getSalesById);
+router.delete('/:id', salesController.deleteSaleWithId);
 router.post(
   '/',
   salesValidation.validateIdInput,

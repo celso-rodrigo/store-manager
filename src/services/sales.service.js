@@ -35,9 +35,14 @@ const getSalesById = async (id) => {
   return camelize(salesObj);
 };
 
+const deleteSaleWithId = async (id) => {
+  await salesModel.deleteSaleWithId(id);
+};
+
 module.exports = {
   saveSales,
   getSales,
   validateProductId,
   getSalesById,
+  deleteSaleWithId,
 };
