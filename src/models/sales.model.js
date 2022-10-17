@@ -58,6 +58,13 @@ const deleteSaleWithId = async (id) => {
   );
 };
 
+const updateSale = async (quantity, productId, id) => {
+  await connection.execute(
+    'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?',
+    [quantity, productId, id],
+  );
+};
+
 module.exports = {
   saveSale,
   saveSaleItem,
@@ -67,4 +74,5 @@ module.exports = {
   checkIfIdExists,
   getSaleId,
   deleteSaleWithId,
+  updateSale,
 };

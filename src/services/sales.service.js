@@ -39,10 +39,20 @@ const deleteSaleWithId = async (id) => {
   await salesModel.deleteSaleWithId(id);
 };
 
+const updateSale = async (id, sales) => {
+  await Promise.all(
+    sales.map((sale) => {
+      const { quantity, productId } = sale;
+      return salesModel.updateSale(quantity, productId, id);
+    }),
+  );
+};
+
 module.exports = {
   saveSales,
   getSales,
   validateProductId,
   getSalesById,
   deleteSaleWithId,
+  updateSale,
 };
