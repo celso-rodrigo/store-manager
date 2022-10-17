@@ -6,10 +6,15 @@ const listAll = async (_req, res) => {
 };
 
 const listById = async (req, res) => {
-  const { id } = req.params;
-  const productById = await productsService.getProductById(id);
-  if (!productById) return res.status(404).json({ message: 'Product not found' });
-  res.status(200).json(productById);
+  const { params: { id }, query: { q } } = req;
+  if (q !== undefined) {
+    const searchResult = await productsService.searchByTerm(q);
+    res.status(200).json(searchResult);
+  } else {
+    const productById = await productsService.getProductById(id);
+    if (!productById) return res.status(404).json({ message: 'Product not found' });
+    res.status(200).json(productById);
+  }
 };
 
 const saveProduct = async (req, res) => {
